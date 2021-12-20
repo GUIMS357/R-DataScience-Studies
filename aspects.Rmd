@@ -1,0 +1,37 @@
+---
+basics
+---
+working directory 
+```{r}
+getwd()
+setwd("c:\\data")
+```
+object type 
+```{r}
+class(iris)
+```
+saving object
+```{r}
+#clone
+iristeste = iris
+#save
+save(iristest, file="iristest.Rdata")
+#remove 
+rm(iristeste)
+#remove
+iristeste
+```
+Load
+```{r}
+#Load from disk
+load(file="iristeste.Rdata")
+#test
+iristest
+```
+basic graphic vector
+```{r}
+x = c(12,34,56,79)
+y = c(1,6,9,14)
+plot(x,y)
+```
+
