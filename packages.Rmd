@@ -19,3 +19,8 @@ remove.packages("e1071")
 plot(iris[,1:4])
 ```
 
+
+```{r}
+ #ctrl+ alt+ I create a independent block of code
+```
+
