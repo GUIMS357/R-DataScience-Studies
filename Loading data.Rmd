@@ -1,0 +1,18 @@
+
+```{r}
+#install.packages("xlsx")
+library(xlsx)
+```
+Text
+```{r}
+#text
+x = read.csv(file.choose(),header = TRUE, sep = ",")
+x
+x = read.csv("Credit.csv",header = TRUE, sep = ",")
+x
+```
+Excel
+```{r}
+data = read.xlsx("Credit.xlsx",sheetIndex = 1)
+data
+```
