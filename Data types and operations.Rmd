@@ -35,7 +35,7 @@ a < b
 a == b
 
 ```
-square rout
+square root
 ```{r}
 sqrt(2500)
 ```
