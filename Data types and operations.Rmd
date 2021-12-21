@@ -1,0 +1,41 @@
+
+
+```{r}
+#implicit declaration
+delta = 8
+class(delta)
+```
+L declare as integer
+```{r}
+delta = 8L
+class(delta)
+```
+other types
+```{r}
+logic = TRUE
+logic = F
+char = "Text"
+char = 'text'
+class(char)
+class(logic)
+```
+Mathematical operations
+```{r}
+c = 2
+d = 4
+(c + d) * d
+e = (c + d) * d
+e
+```
+Logic tests
+```{r}
+a = 1
+b = 2
+a < b
+a == b
+
+```
+square rout
+```{r}
+sqrt(2500)
+```

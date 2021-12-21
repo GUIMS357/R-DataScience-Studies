@@ -4,13 +4,13 @@ basics
 working directory 
 ```{r}
 getwd()
-setwd("c:\\data")
+setwd("c:\\data") # set the data file path if you dont change is the default Rmd path
 ```
 object type 
 ```{r}
 class(iris)
 ```
-saving object
+saving  an object
 ```{r}
 #clone
 iristeste = iris
@@ -30,7 +30,7 @@ iristest
 ```
 basic graphic vector
 ```{r}
-x = c(12,34,56,79)
+x = c(12,34,56,79) # c is to combine
 y = c(1,6,9,14)
 plot(x,y)
 ```
