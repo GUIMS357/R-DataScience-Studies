@@ -1,0 +1,38 @@
+
+Head e Tail
+```{r}
+esoph
+#default 6 lines
+head(esoph) # first registers
+tail(esoph) # last registers
+#10 lines
+head(esoph, n=10)
+```
+dimensions
+```{r}
+dim(esoph)
+dim(esoph)[1]
+```
+lenght
+```{r}
+#if bidimensional it will return lines
+length(islands )
+```
+columns names 
+```{r}
+colnames(esoph)
+```
+lines names
+```{r}
+rownames(esoph)
+```
+summary
+```{r}
+summary(esoph)
+```
+choosing a file
+```{r}
+x = file.choose()
+x
+```
+
