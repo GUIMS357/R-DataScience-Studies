@@ -1,0 +1,45 @@
+
+If
+```{r}
+a = 10
+b = 20
+if (a < b)
+{
+  print("TRUE")
+}else
+{
+  print("false") 
+}
+```
+Ifelse
+```{r}
+x = ifelse(a < 10,"A is bigger","A isn't bigger")
+x
+```
+For
+```{r}
+for (i in 1:10) {
+  print(i)
+  }
+```
+While
+```{r}
+a = 1
+while(a <= 10)
+{
+  print(a)
+  a = a+1
+}
+```
+Function
+```{r}
+EvenOrOdd <- function(x) {
+  
+  return(ifelse(x%%2==0,"Even","Odd"))
+  
+}
+
+EvenOrOdd(5)
+EvenOrOdd(12)
+```
+
