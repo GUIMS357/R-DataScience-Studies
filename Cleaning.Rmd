@@ -98,7 +98,7 @@ duplicated data
 x =  data[duplicated(data$Id),]
 x
 #ID 81 is duplicated
-#excludin by index, 82
+#excluding by ID, 82
 data = data[-c(82),]
 
 #search duplicated lines
