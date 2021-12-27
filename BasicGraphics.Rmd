@@ -4,18 +4,18 @@ trees
 hist( trees$Height)
 hist( trees$Height,  main="Tree", ylab="Frequency",xlab="Height", col="blue")
 hist( trees$Height,  main="Tree", ylab="Frequency",xlab="Height", col="blue",
-      density=20, breaks=20    )
+      density=20, breaks=20    )# break to detail more the information
 ```
 Density
 ```{r}
 density = density(trees$Height)
 plot(density)
 ```
-Histogram density, even 
+density over the histogram
 ```{r}
 #Execute with ctrl+shift+enter
 hist(trees$Height, main=NULL, xlab=NULL, ylab = NULL)
-par(new=TRUE)
+par(new=TRUE)# overlap 
 plot(density)
 ```
 Dispersion
@@ -36,7 +36,7 @@ plot(jitter(trees$Girth), trees$Volume, ylab="Circumference", xlab="Volume", col
 ```
 subtitles with categorical dimensions
 ```{r}
-plot(CO2$conc, CO2$uptake,pch=20, col= CO2$Treatment)
+plot(CO2$conc, CO2$uptake,pch=20, col= CO2$Treatment)#col = to put a different color for each atribute 
 #"bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center"
 legend("bottomright",legend=c("nonchilled","chilled"),cex=1, fill=c("black","red")) 
 ```
@@ -46,7 +46,7 @@ plot(trees)
 ```
 Screen division
 ```{r}
-#Executar com crtl+shift+enter
+#run with crtl+shift+enter
 split.screen(figs=c(2,2))
 screen(1)
 plot(trees$Girth, trees$Volume)

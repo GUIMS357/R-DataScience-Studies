@@ -1,0 +1,41 @@
+Boxplot
+```{r}
+boxplot(trees$Volume, main= "Trees", xlab = "Volume")
+boxplot(trees$Volume, main= "Trees", xlab = "Volume", col="blue", horizontal=TRUE ) 
+boxplot(trees$Volume, main="Trees", xlab = "Volume", col="blue",outline=F )
+```
+
+```{r}
+#notch
+boxplot( trees$Height, main="Trees", xlab = "height", col="blue",  notch=TRUE )
+#chart data
+boxplot.stats(trees$Height)
+#read just one info
+boxplot.stats(trees$Height)$stats
+```
+multiples graphics
+```{r}
+boxplot(trees)
+```
+Agregation
+```{r}
+InsectSprays
+spray = aggregate(. ~ spray, data=InsectSprays,sum)
+spray 
+```
+bar chart
+```{r}
+#execute with ctrl+shift+enter
+barplot(spray$count,col= gray.colors(6), xlab="Spray", ylab="Total", names.arg=spray$spray)
+box()
+```
+Sector chart - pie
+```{r}
+pie(spray$count, labels= spray$spray, main="Spray",col=c(1:6))
+```
+Sector chart with subtitles - pie
+```{r}
+pie(spray$count,labels=NA,  main="Spray",col=c(1:6))
+legend("bottomright",legend=spray$spray ,cex=1, fill=c(1:6))
+```
+
