@@ -17,7 +17,7 @@ multiples graphics
 ```{r}
 boxplot(trees)
 ```
-Agregation
+Aggregation
 ```{r}
 InsectSprays
 spray = aggregate(. ~ spray, data=InsectSprays,sum)

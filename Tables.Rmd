@@ -1,0 +1,21 @@
+```{r}
+#install.packages("stargazer")
+library(stargazer)
+```
+Latex
+```{r}
+stargazer(iris)
+```
+Html
+```{r}
+stargazer(iris, type="html")
+```
+Text
+```{r}
+stargazer(iris, type="text")
+```
+Save in disk
+```{r}
+stargazer(women, out="women.tex", summary=FALSE)
+```
+
