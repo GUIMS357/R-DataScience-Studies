@@ -51,7 +51,6 @@ conditional density
 densityplot(~CO2$conc | CO2$Treatment, plot.points=FALSE)
 densityplot(CO2$conc)
 densityplot(~CO2$conc | CO2$Treatment)
-densityplot(~CO2$conc | CO2$Treatment, plot.points=FALSE)
 ```
 3d chart
 Spray to repel bees
