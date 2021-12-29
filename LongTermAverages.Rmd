@@ -1,0 +1,16 @@
+Smal and big samples
+
+estimated average of 3.5
+
+Small sample
+```{r}
+x = sample(1:6,6,replace = T)
+mean(x)
+```
+Big sample
+```{r}
+x = sample(1:6,10000,replace = T)
+mean(x)
+
+```
+
