@@ -1,5 +1,3 @@
-
----
 Variability and centrality measurements
 players wage data
 ```{r}

@@ -1,5 +1,4 @@
----
-Sistemati Sample
+Sistematic Sample
 ```{r}
 #install.packages("TeachingSampling")
 library("TeachingSampling")
