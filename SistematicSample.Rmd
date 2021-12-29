@@ -1,0 +1,28 @@
+---
+Sistemati Sample
+```{r}
+#install.packages("TeachingSampling")
+library("TeachingSampling")
+```
+sistematic sample with 150 of size, 10 divided in 10 groups
+```{r}
+sample = S.SY(150, 10)
+sample
+```
+Size
+```{r}
+dim(sample)
+```
+Used at iris
+```{r}
+sampleiris = iris[sample,]
+```
+Verification
+```{r}
+sampleiris
+```
+Size
+```{r}
+dim(sampleiris)
+```
+
