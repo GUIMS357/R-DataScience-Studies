@@ -1,0 +1,32 @@
+central limit theorem
+```{r}
+#deactivate warnings
+options(warn=-1)
+#install.packages("semTools")
+library(semTools)
+
+```
+Vector declaration and initialization
+```{r}
+z = rep(0,500)
+```
+Generating samples
+```{r}
+for (i in 1:500) {
+  m = mvrnonnorm(1000, c(1, 2), matrix(c(10, 2, 2, 5), 2, 2),
+                 skewness = c(5, 2), kurtosis = c(3, 3))
+  #save average 
+  z[i] =mean(m)
+  
+  #print first tree
+  if (i<4){
+   
+    hist(m,breaks=50, main= paste0("Histrogram ", i ))
+  }
+}
+```
+print the average distribution of the sample 
+```{r}
+hist(z)
+```
+
