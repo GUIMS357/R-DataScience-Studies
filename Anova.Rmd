@@ -1,0 +1,34 @@
+
+Anova
+load data
+```{r}
+treatment = read.csv("anova.csv", sep=";")
+treatment
+```
+distribution of medicine per hour 
+```{r}
+boxplot(treatment$Hours ~ treatment$Medicine)
+```
+Variance analisys 
+p < 0,05?
+hipotesis is null
+```{r}
+an =  aov(Hours ~ Medicine, data=treatment)
+summary(an)
+```
+Anova with two factors
+any value of p shows a significant difference
+```{r}
+an =  aov(Hours ~ Medicine * Sex, data=treatment)
+summary(an)
+```
+if  a difference is noted, execute turkey test
+```{r}
+tukey = TukeyHSD(an)
+tukey
+```
+test chart
+
+```{r}
+plot(tukey)
+```
