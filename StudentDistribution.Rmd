@@ -1,0 +1,14 @@
+scientist wage 75$/h. Sample = 9. S=10. chance to be lower than 80?
+t=1.5, degrees of freedom
+```{r}
+pt(1.5, 8)
+```
+chance to be higher than 80
+```{r}
+pt(1.5,8,lower.tail=F)
+1 - pt(1.5,8)
+```
+add 2 tails
+```{r}
+pt(1.5, 8) + pt(1.5,8,lower.tail=F)
+```
