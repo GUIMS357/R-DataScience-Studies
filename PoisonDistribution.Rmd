@@ -1,5 +1,5 @@
 Poison distribution
-dpois = pontual probability
+dpois = punctual probability
 ppois = cumulative
 lower.tail False = bigger than right tail of the distribution
 
