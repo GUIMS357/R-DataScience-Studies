@@ -1,0 +1,56 @@
+cars with MPG and other aspects 
+mpg, hp, cyl, disp
+```{r}
+#install.packages("corrgram")
+library(corrgram)
+mtcars
+dim(mtcars)
+```
+Correlation
+```{r}
+cor(mtcars[1:4])
+corrgram(mtcars[1:4], order=TRUE, lower.panel=panel.shade,
+         upper.panel=panel.pie, text.panel=panel.txt,
+         main="cars")
+```
+analyzing cyl vs mpg
+```{r}
+plot(mtcars$mpg ~ mtcars$disp, ylab="mpg", xlab="cyl", main="cars")
+```
+model using cyl to predict mpg
+Intercept and angle
+```{r}
+modelo = lm(mpg ~ disp, data=mtcars)
+modelo
+```
+Determination coefficient (71% of the dependent variable is explained by the explanatory variable)
+R2 adjusted
+```{r}
+summary(modelo)$r.squared 
+summary(modelo)$adj.r.squared
+```
+chart with line model
+```{r}
+#use with Crtrl+ Shif + Enter
+plot(mpg ~ disp, data=mtcars,ylab="mpg", xlab="cyl", main="cars")
+abline(modelo)
+```
+predicting mpg com 200 cyl
+```{r}
+predict(modelo,data.frame(disp = 200))
+```
+adding two independent variables hp and cyl
+```{r}
+modelo = lm(mpg ~ disp +  hp + cyl, data=mtcars)
+modelo
+```
+Determination coefficient (71% of the dependent variable is explained by the explanatory variable)
+R2 adjusted
+```{r}
+summary(modelo)$r.squared 
+summary(modelo)$adj.r.squared
+```
+Predicting mpg with 200 cyl, 100 hp and 4 cyl
+```{r}
+predict(modelo,data.frame(disp = 200, hp=100, cyl=4))
+```
