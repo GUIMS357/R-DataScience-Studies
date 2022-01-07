@@ -1,0 +1,31 @@
+```{r}
+#install.packages("arules")
+#install.packages("arulesViz")
+library(arules)
+library(arulesViz)
+```
+Import transactions
+```{r}
+transactions = read.transactions("transactions.txt",format="basket",sep=",")
+transactions 
+inspect(transactions)
+image(transactions)
+```
+mining 
+```{r}
+rules = apriori(transactions, parameter= list(supp=0.5, conf=0.5, minlen=2))
+rules
+summary(rules)
+inspect(rules) 
+```
+view
+```{r}
+plot(rules, method="graph", control=list(type="items"))
+plot(rules, method="matrix", control=list(type="items"))
+plot(rules, method="matrix3D")
+```
+Save in HD
+```{r}
+write.csv(DATAFRAME(rules),"rules.csv")
+```
+
