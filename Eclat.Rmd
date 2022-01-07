@@ -1,0 +1,21 @@
+```{r}
+#install.packages("arules")
+#install.packages("arulesViz")
+library(arules)
+library("arulesViz")
+```
+transactions
+```{r}
+transactions <-read.transactions("Transactions.txt",format="basket",sep=",")
+image(transacoes)
+```
+generate rules 
+```{r}
+rules = eclat(transacoes, parameter = list(minlen=2))
+inspect(rules)
+```
+view 
+```{r}
+plot(rules, method="graph", control=list(type="items"))
+```
+
