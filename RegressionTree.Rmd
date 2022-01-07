@@ -1,0 +1,37 @@
+```{r}
+#install.packages("rpart")
+#install.packages("forecast")
+library(rpart)
+library(forecast)
+```
+data set 
+```{r}
+iris
+```
+creating model to predict sepal length
+```{r}
+model = rpart(Sepal.Length ~ Sepal.Width + Petal.Length +  Species ,data=iris)
+model
+summary(model)
+```
+View 
+```{r}
+#Use Ctrl+ Shift + Enter
+plot(model)
+text(model)
+```
+Prediction 
+```{r}
+prediction = predict(model, iris)
+head(prediction)
+```
+comparing with actual data 
+```{r}
+comparing = cbind(prediction,iris$Sepal.Length,prediction - iris$Sepal.Length )
+head(comparing)
+```
+Checking error 
+```{r}
+accuracy(prediction,iris$Sepal.Length)
+```
+
