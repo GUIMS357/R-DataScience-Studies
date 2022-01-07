@@ -1,0 +1,27 @@
+```{r}
+iris
+```
+Standardization
+```{r}
+iris_padr =  scale(iris[,1:4])
+iris_padr
+```
+Function to normalize
+```{r}
+normalized = function(x){
+  return((x-min(x))/(max(x)-min(x)))
+}
+```
+apply normalization
+```{r}
+iris_norm = normalized(iris[,1:4])
+iris_norm
+```
+comparing the two models
+```{r}
+#Use ctrl + shift + Enter
+boxplot(iris[,1:4],main="Original Data")
+boxplot(iris_padr, main="Standard Data")
+boxplot(iris_norm, main="Normalized Data")
+
+```
