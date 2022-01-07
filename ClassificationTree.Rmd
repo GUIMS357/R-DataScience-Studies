@@ -1,0 +1,48 @@
+```{r}
+#install.packages('rpart',dependencies=T)
+library(rpart)
+```
+load data and separate training and test
+```{r}
+credit = read.csv("Credit.csv")
+credit
+sample = sample(2,1000,replace=T, prob=c(0.7,0.3))
+credittraining = credit[sample==1,]
+credittest = credit[sample==2,]
+```
+creating model and separation method 
+```{r}
+tree = rpart(class ~ ., data=credittraining,  method="class")
+print(tree)
+```
+printing tree
+```{r}
+#Use Ctrl+ Shift + Enter
+plot(tree)
+text(tree, use.n=TRUE, all=TRUE, cex=.8)
+```
+Prevision
+```{r}
+test = predict(tree,newdata=credittest)
+head(test)
+```
+add column test a credittest
+
+```{r}
+cred = cbind(credittest,test)
+cred
+```
+create column with categorical result 
+```{r}
+cred['Result'] = ifelse(cred$bad>=0.5,"bad","good")
+cred
+```
+Confusion matrix
+```{r}
+confusionM = table(cred$class,cred$Result)
+confusionM
+hitrate = (confusionM[1] + confusionM[4]) / sum(confusionM)
+hitrate
+```
+
+
