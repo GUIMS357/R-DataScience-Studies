@@ -1,0 +1,41 @@
+```{r}
+#install.packages("e1071")
+#install.packages("randomForest")
+library(e1071)
+library(randomForest)
+credit = read.csv("Credit.csv")
+credit$class = as.factor(credit$class)
+```
+separate training and test
+Seed to allow reproduction 
+```{r}
+set.seed(234)
+sample = sample(2,1000,replace=T, prob=c(0.7,0.3))
+credittraining = credit[sample==1,]
+credittest = credit[sample==2,]
+```
+first model with every attribute 
+accuracy check
+```{r}
+model = svm(class ~., credittraining)
+prediction = predict(model,credittest)
+confusionM = table(credittest$class,prediction)
+hitrate = (confusionM[1] + confusionM[4]) / sum(confusionM)
+hitrate
+```
+selecting attributes using a method
+```{r}
+significance  = randomForest(class ~ ., data = credittraining)
+col = importance(significance)
+col
+varImpPlot(significance)
+```
+second model with the most important variables
+```{r}
+model = svm(class ~ credit_amount + age + duration + checking_status ,credittraining)
+prediction = predict(model,credittest)
+confusionM = table(credittest$class,prediction)
+hitrate = (confusionM[1] + confusionM[4]) / sum(confusionM)
+hitrate
+```
+
