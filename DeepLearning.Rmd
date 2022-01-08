@@ -1,0 +1,67 @@
+
+```{r}
+#install.packages("h2o")
+library(h2o)
+```
+importing file to visualization
+```{r}
+#internal use 
+options(warn=-1)
+digits <- read.csv(gzfile("test.csv.gz"), header=F)
+dim(digits)
+head(digits)
+```
+visualization of some digits
+```{r}
+dig1 = t(matrix(unlist(digits[20,-785]), nrow = 28, byrow = F))
+dig1 = t(apply(dig1, 2, rev))
+dig1
+digits[20,785]
+
+dig2 = t(matrix(unlist(digits[2,-785]), nrow = 28, byrow = F))
+dig2 = t(apply(dig2, 2, rev))
+
+dig3 = t(matrix(unlist(digits[4,-785]), nrow = 28, byrow = F))
+dig3 = t(apply(dig3, 2, rev))
+
+dig4 = t(matrix(unlist(digits[5,-785]), nrow = 28, byrow = F))
+dig4 = t(apply(dig4, 2, rev))
+```
+images view
+```{r}
+#Use ctrl + shift + enter
+image(dig1, col = grey.colors(255))
+image(dig2,col=grey.colors(255))
+image(dig3,col=grey.colors(255))
+image(dig4,col=grey.colors(255))
+```
+startup 
+```{r}
+h2o.init()
+training <- h2o.importFile('train.csv.gz')
+test <- h2o.importFile('test.csv.gz')
+dim(training)
+head(training)
+colnames(training)
+#class to factor
+training[,785] <- as.factor(training[,785])
+test[,785] <- as.factor(test[,785])
+
+```
+model
+```{r}
+model <- h2o.deeplearning(x = colnames(training[,1:784]),  y = "C785",  training_frame = training,  validation_frame = test,  distribution = "AUTO",  activation = "RectifierWithDropout",  hidden = c(64,64,64),  sparse = TRUE, epochs = 20)
+plot(model)
+```
+model performance 
+```{r}
+h2o.performance(model)
+```
+prediction test
+
+```{r}
+training[20,785]
+pred <- h2o.predict(model, newdata = training[20,1:784])
+pred$predict
+```
+
