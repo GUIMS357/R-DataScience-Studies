@@ -1,0 +1,50 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Métricas
+---
+
+```{r}
+#install.packages("igraph")
+library(igraph)
+```
+Metrics
+```{r}
+#53 vertex and 179 edges relationship graph 
+graph8 = read_graph("graph.graphml", format = c("graphml"))
+#53 vertices e 179 edges
+graph8
+plot(graph8)
+#enter and exit rate
+degree(graph8, mode="all")
+#enter
+degree(graph8, mode="in")	
+#exit
+degree(graph8, mode="out")
+
+# putting a rate at the vertex 
+grau  =  degree(graph8, mode="in")	
+plot(graph8, vertex.size=grau)
+```
+more metrics 
+```{r}
+#diameter (biggest distance between different vertexes)
+diameter(graph8, directed=T)
+diameter(graph8, directed=F)
+
+#diameter vertexes 
+get_diameter(graph8, directed=T)
+get_diameter(graph8, directed=F)
+```
+More metrics
+```{r}
+#neighborhood, zero includes the own vertex, mode all don consider direction
+neighborhood(graph8, 0, mode=c("all"))
+
+#graph density
+edge_density(graph8)
+
+#isomorphic test 
+graph9 = graph8
+isomorphic(graph8,graph9)
+```
+
