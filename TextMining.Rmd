@@ -1,0 +1,78 @@
+```{r}
+#install.packages("tm")
+#install.packages("textreadr")
+#install.packages("wordcloud")
+#install.packages("RColorBrewer")
+library(tm)
+library(textreadr)
+library(wordcloud)
+library(RColorBrewer)
+```
+Corpus creating
+```{r}
+#available letters
+getSources()
+#forms 
+getReaders()
+#creating corpus PCorpus(): phisic, VCorpus: memory volatile
+#getting data from wikipedia
+x = read_html("https://en.wikipedia.org/wiki/Artificial_intelligence" )
+#generate corpus
+corpus = VCorpus(VectorSource(x),readerControl = list(reader=readPlain,language = "eng"))
+```
+Explorando Corpus
+```{r}
+#resume 
+inspect(corpus) 
+#corpus de 1 a 100
+inspect(corpus[1:100])  
+#metadata
+meta(corpus[[1]])  
+#view
+inspect(corpus[[2]])  
+#text separeted by lines
+as.character(corpus[[2]]) 
+#single line
+as.character(corpus[[200]])[1]
+```
+treatments 
+```{r}
+#tm_map to execute transformations
+stopwords("portuguese")
+#remove
+corpus = tm_map(corpus, removeWords, stopwords("english"))
+#white spaces 
+corpus = tm_map(corpus , stripWhitespace)
+#punctuation
+corpus  = tm_map(corpus , removePunctuation)
+#numbers
+corpus  = tm_map(corpus , removeNumbers)
+```
+First Wordcloud
+```{r}
+wordcloud(corpus,max.words=50,random.order=T,colors=rainbow(8),rot.per=0.5,use.r.layout=T)
+```
+most frequent terms matrix
+
+```{r}
+#most frequent worrds matrix 
+#TermDocumentMatrix  in line terms 
+#DocumentTermMatrix  in line document
+freq = TermDocumentMatrix(corpus)
+freq
+#transforming in a R matrix 
+matrix = as.matrix(freq)
+#order by frequency 
+matrix = sort(rowSums(matrix),decreasing=TRUE)
+#data frame
+matrix = data.frame(word=names(matrix), freq=matrix)
+head(matrix, n=100)
+#find most frequent terms
+findFreqTerms(freq,500,Inf)
+#remove infrequent
+removeSparseTerms(freq, 0.4)
+```
+new cloud
+```{r}
+wordcloud(matrix$word,matrix$freq,max.words=50,random.order=T,colors=rainbow(8),rot.per=0.5,use.r.layout=T)
+```
