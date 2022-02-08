@@ -1,0 +1,65 @@
+```{r}
+#install.packages("forecast")
+library(forecast)
+```
+Studying data set
+```{r}
+AirPassengers
+start(AirPassengers)
+end(AirPassengers)
+frequency(AirPassengers)
+```
+Charts
+```{r}
+#Use Ctrl+ Shift + Enter
+plot(AirPassengers)
+plot(aggregate(AirPassengers))
+```
+Window generation 
+```{r}
+subst = window(AirPassengers,start=c(1960,1), end=c(1960,12))
+subst
+plot(subst)
+```
+Decomposition
+```{r}
+dec = decompose(AirPassengers)
+dec
+```
+
+
+```{r}
+attributes(dec)
+dec$seasonal
+```
+analyzing Decomposition elements
+```{r}
+#Use Ctrl+ Shift + Enter
+plot(dec)
+plot(dec$x)
+plot(dec$seasonal)
+plot(dec$trend)
+plot(dec$random)
+```
+exponential smoothing
+```{r}
+ets = ets(AirPassengers)
+ets
+```
+Prediction
+```{r}
+prediction = forecast(ets, h=12)
+plot(prediction)
+prediction
+```
+Arima
+```{r}
+arima = auto.arima(AirPassengers)
+arima
+```
+prediction
+```{r}
+prediction = forecast(arima, h=12)
+plot(prediction)
+prediction
+```
