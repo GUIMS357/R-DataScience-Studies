@@ -1,0 +1,50 @@
+
+Loading data 
+```{r}
+election = read.csv("Election.csv",sep=';',header=T)
+election
+```
+chart and visualization
+```{r}
+plot(election$EXPENDITURE,election$SITUATION)
+summary(election)
+```
+Correlation
+```{r}
+cor(election$EXPENDITURE,election$SITUATION)
+```
+Logistic regression model
+```{r}
+modelo = glm(SITUATION ~ EXPENDITURE,data=election,family="binomial") 
+summary(modelo)
+```
+model to compare data 
+```{r}
+#use  ctrl+shift+enter
+plot(election$EXPENDITURE,election$SITUATION,col='red',pch=20)
+points(election$EXPENDITURE, modelo$fitted, pch=4)
+```
+Testing model with own candidates
+```{r}
+predict = predict(modelo,newdata=election,type="response"  )
+predict = predict >= 0.5
+predict
+```
+performance validation 
+```{r}
+confusion = table(predict,election$SITUATION)
+confusion
+hitrate = (confusion[1] + confusion[4]) / sum(confusion)
+hitrate
+```
+new candidates
+```{r}
+predictelection = read.csv("Newcandidates.csv",sep=';',header=T)
+predictelection
+```
+Prevision
+```{r}
+predictelection$RESULT = predict(modelo,newdata=predictelection,type="response") 
+predictelection$RESULT
+predictelection$RESULT >= 0.5
+```
