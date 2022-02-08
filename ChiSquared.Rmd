@@ -1,0 +1,25 @@
+chi squared
+
+creating a dataset to use 
+```{r}
+novel = matrix(c(19,6,43,32),nrow=2, byrow=T)
+rownames(novel) = c("Male","Female")
+colnames(novel) = c("Watch","DoesntWatch")
+novel
+```
+chi squared
+if p is bigger than 0,05, difference is insignificant
+```{r}
+chisq.test(novel)
+```
+change proportion of mans that watch novel
+
+test again
+```{r}
+novel = matrix(c(22,3,43,32),nrow=2, byrow=T)
+rownames(novel) = c("Male","Female")
+colnames(novel) = c("Watch","DoesntWatch")
+novel
+chisq.test(novel)
+```
+

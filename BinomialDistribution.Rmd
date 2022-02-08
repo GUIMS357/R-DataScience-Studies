@@ -1,0 +1,24 @@
+
+x = events, p = probability, size = events
+if you flip a coin three times, what's the probability of getting heads 3 times?
+```{r}
+dbinom(x=3,size=5,prob=0.5)
+```
+if I'm driving and pass 4 signals of 4 times each. what's the probability of 0,1,2,3 or 4 signals be green?
+
+```{r}
+pbinom(q=4, size=4, prob=0.25)
+```
+if you did a test with 12 questions with 4 possible answers in each and don't know nothing, what's the probability of 7 questions be correct.
+
+```{r}
+dbinom(x=7,size=12,prob=0.25)
+```
+if I'm driving and pass 4 signals of 4 times each. what's the probability of 3 or more signals be green?
+
+```{r}
+pbinom(q=2, size=4, prob=0.25, lower.tail = F)
+dbinom(x=3,size=4,prob=0.25) + dbinom(x=4,size=4,prob=0.25)
+1 - pbinom(q=2, size=4, prob=0.25)
+```
+

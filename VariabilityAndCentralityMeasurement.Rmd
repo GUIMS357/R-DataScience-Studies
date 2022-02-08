@@ -1,0 +1,30 @@
+Variability and centrality measurements
+players wage data
+```{r}
+players = c(40000,18000,12000,250000,30000,140000,300000,40000,800000)
+```
+Average
+```{r}
+mean(players)
+```
+median
+```{r}
+median(players)
+```
+quartiles
+```{r}
+quartis  = quantile(players)
+quartis
+```
+3º quartile
+```{r}
+quartis[4]
+```
+Standard Deviation
+```{r}
+sd(players)
+```
+Summary
+```{r}
+summary(players)
+```
