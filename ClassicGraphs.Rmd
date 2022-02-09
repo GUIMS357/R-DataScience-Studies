@@ -1,0 +1,30 @@
+```{r}
+#install.packages("igraph")
+#install.packages("igraphdata")
+library(igraph)
+library(igraphdata)
+```
+12 classic graphs 
+ Koenigsberg bridges 
+```{r}
+data(Koenigsberg)
+Koenigsberg
+plot(Koenigsberg)
+#odd point, isn't an eulerian graph.
+degree(Koenigsberg, mode="all")
+```
+basic social network 
+```{r}
+data(kite)
+degree(kite, mode="all")
+plot(kite)
+```
+university friendships (graph8)
+```{r}
+data(UKfaculty)
+UKfaculty
+plot(UKfaculty)
+comun=cluster_edge_betweenness(UKfaculty, directed = F)
+plot(comun,UKfaculty)
+
+```

@@ -1,0 +1,99 @@
+```{r}
+#install.packages("igraph")
+library(igraph)
+```
+directional graph edge per pair 
+```{r}
+graph1 = graph(edges=c(1,2,3,4))
+plot(graph1)
+```
+connected graph 
+```{r}
+graph2 = graph(edges=c(1,2,2,3,3,4,4,1))
+plot(graph2)
+```
+double direction edges 
+```{r}
+graph2 = graph(edges=c(1,2,2,3,3,4,4,1,1,4,4,3,3,2,2,1))
+plot(graph2)
+```
+loop 
+```{r}
+graph3 = graph(edges=c(1,2,2,3,3,4,4,1,1,1))
+plot(graph3)
+```
+literal to + direction
+
+```{r}
+graph8 = graph_from_literal(1-+2,2-+3,3++4,4+-1)
+plot(graph8)
+```
+literals unidirectional 
+```{r}
+graph8 = graph_from_literal(1-2,2-3,3-4,4-1)
+plot(graph8)
+```
+disconnected 0 degree
+```{r}
+graph8 = graph_from_literal(1-2-3-4-1,5)
+plot(graph8)
+graph8
+```
+ Igraph object 
+```{r}
+graph2 = graph(edges=c(1,2,2,3,3,4,4,1))
+plot(graph2)
+graph2
+```
+graph indirect
+U to indirect
+```{r}
+graph3 = graph(edges=c(1,2,2,3,3,4,4,1),directed=F )
+plot(graph3)
+graph3
+```
+Isolated elements 
+```{r}
+graph4 = graph(edges=c(1,2,2,3,3,4,4,1),directed=F, n=10 )
+plot(graph4)
+```
+Named Vertices
+```{r}
+graph5 <- graph(edges= c("A", "B", "B", "C", "C", "D","D", "E","E","A","A","C","C","B")) 
+plot(graph5)
+```
+other form to create isolated graphs 
+```{r}
+graph6 <- graph(edges= c("A", "B", "B", "C", "C", "D","D", "E","E","A","A","C","C","B"), isolates=c("F","G"))
+plot(graph6)
+#adjacent matrix 
+graph6[]
+#line 1
+graph6[1,]
+#column 1
+graph6[,2]
+#Edges names 
+V(graph6)$name
+```
+Other attributes 
+```{r}
+graph7 <- graph(edges= c("Fernando", "Pedro", "José", "Antônio", "Fernando", "José","Fernando", "Antônio"))
+plot(graph7)
+#weights to the edges as attributes 
+V(graph7)$weight = c(40,30,30,25)
+#reading  attributes , have name e weight. Name is default 
+vertex_attr(graph7)
+#edges attributes 
+E(graph7)$friendshiptype = c("friend","enemy","enemy","friend")
+#show all 
+edge_attr(graph7)
+#show attribute by name 
+edge_attr(graph7)$friendshiptype
+vertex_attr(graph7)$weight
+#weight is default attribute 
+E(graph7)$weight = c(1,2,1,3)
+graph7
+V(graph7)$type ="Humans"
+graph7
+```
+

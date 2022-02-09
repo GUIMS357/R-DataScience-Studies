@@ -1,0 +1,38 @@
+```{r}
+#install.packages("igraph")
+library(igraph)
+graph8 = read_graph("graph.graphml", format = c("graphml"))
+graph8 = as.undirected(graph8)
+```
+Communities
+
+```{r}
+#Detecting communities 
+comun = cluster_edge_betweenness(graph8)
+#visualize 
+comun
+#each vertex to each communities 
+comun$membership
+#print using color to represent each communities 
+plot(graph8, vertex.color = comun$membership)
+```
+graph recreation
+```{r}
+dist = graph(edges=c("A","C","A","B","B","E","B","F","C","D","G","H","D","H","E","H","F","G"),directed=TRUE)
+```
+
+```{r}
+comun = cluster_edge_betweenness(dist)
+comun
+comun$membership
+
+plot(dist, vertex.color = comun$membership, edge.color="gray")
+```
+ClicksDetection
+```{r}
+#min is  the minimum number of members
+cli = cliques(as.undirected(graph8), min=4)
+length(cli)
+cli
+```
+

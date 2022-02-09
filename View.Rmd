@@ -1,0 +1,40 @@
+```{r}
+#install.packages("igraph")
+library(igraph)
+```
+recreate previous graph ( basics)
+```{r}
+graph7 <- graph(edges= c("Fernando", "Pedro", "José", "Antônio", "Fernando", "José","Fernando", "Antônio"))
+V(graph7)$weight = c(40,30,30,25)
+E(graph7)$friendshiptype = c("friend","enemy","enemy","friend")
+E(graph7)$weight = c(1,2,1,3)
+V(graph7)$type ="Humans"
+```
+multiple print forms 
+```{r}
+#vertex size according to weight 
+plot(graph7, vertex.size=vertex_attr(graph7)$weight)
+#edge size according to weight 
+plot(graph7, vertex.size=vertex_attr(graph7)$weight, edge.width=edge_attr(graph7)$weight)
+```
+
+```{r}
+#color to vertex by attribute 
+vertex_attr(graph7)$Cor = c("Blue", "Red", "Yellow", "Green")
+#vertex color by attribute 
+plot(graph7, vertex.size=vertex_attr(graph7)$weight, edge.width=edge_attr(graph7)$weight, vertex.color= vertex_attr(graph7)$Cor)
+```
+
+```{r}
+#curved title and frame 
+plot(graph7, vertex.size=vertex_attr(graph7)$weight, edge.width=edge_attr(graph7)$weight, vertex.color= vertex_attr(graph7)$Cor, edge.curved=0.4, frame=TRUE, main="Graph")
+#rectangular vertex 
+plot(graph7, vertex.size=vertex_attr(graph7)$weight, edge.width=edge_attr(graph7)$weight, vertex.color= vertex_attr(graph7)$Cor, edge.curved=0.4, frame=TRUE, main="Graph", vertex.shape="square")
+```
+interactive vertex 
+```{r}
+#relationship vertex 
+graph8 = read_graph("Graph.graphml", format = c("graphml"))
+tkplot(graph8)
+```
+
