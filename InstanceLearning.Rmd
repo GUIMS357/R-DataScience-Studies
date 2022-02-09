@@ -1,0 +1,36 @@
+```{r}
+#install.packages("class")
+library(class)
+```
+Iris
+```{r}
+head(iris)
+summary(iris)
+```
+separate training and test
+```{r}
+sample = sample(2,150,replace=T, prob=c(0.7,0.3))
+iristraining = iris[sample==1,]
+iristest = iris[sample==2,]
+```
+dimensions view
+```{r}
+dim(iristraining)
+dim(iristest)
+```
+classify without a model 
+training data, test data, real class, neighborhood numbers been consider 
+
+```{r}
+prevision = knn(iristraining[,1:4],iristest[,1:4],iristraining[,5],k=3)
+prevision
+```
+confusion matrix
+```{r}
+confusionM = table(iristest[,5],prevision)
+confusionM
+```
+performance check
+```{r}
+(confusionM[1] + confusionM[5] + confusionM[9]) / sum(confusionM) 
+```

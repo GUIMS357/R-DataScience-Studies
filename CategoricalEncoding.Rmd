@@ -1,0 +1,23 @@
+```{r}
+#install.packages('mltools')
+#install.packages('data.table')
+library(mltools)
+library(data.table)
+```
+
+```{r}
+Titanic
+tit = as.data.frame(Titanic)
+tit
+```
+dataMatrix is default function 
+Label encoder of Class, Sex e Age
+```{r}
+labenc = data.matrix(tit[,1:3])
+labenc
+```
+One hot encoding in the same columns
+```{r}
+hotenco  = one_hot(as.data.table( tit[,1:3]))
+hotenco
+```

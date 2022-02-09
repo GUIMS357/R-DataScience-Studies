@@ -1,0 +1,36 @@
+```{r}
+#install.packages("factoextra")
+library(factoextra)
+
+```
+
+Iris dataset 
+```{r}
+iris
+```
+cluster generation
+```{r}
+cluster = kmeans(iris[1:4],centers=3)
+cluster
+table(iris$Species,cluster$cluster)
+
+```
+chart
+```{r}
+plot(iris$Sepal.Length, iris$Sepal.Width,col=cluster$cluster, pch=20, main="iris")
+plot(iris[,1:4],col=cluster$cluster, main="Iris")
+```
+Specialized chart
+```{r}
+g2 = fviz_cluster(cluster, data=iris[1:4], ellipse.type = "convex", ggtheme = theme_bw(),
+                main="Cluster ")
+plot(g2)
+```
+adding cluster to original data 
+```{r}
+iris2 = iris
+iris2['groups'] = cluster$cluster
+iris2
+#write.csv(iris2,"iri2.csv")
+```
+

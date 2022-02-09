@@ -1,0 +1,33 @@
+```{r}
+#install.packages('randomForest')
+library(randomForest)
+credit = read.csv('credit.csv')
+#transform class into factor
+credit$class = as.factor(credit$class)
+head(credit)
+```
+separate training and test
+```{r}
+sample = sample(2,1000,replace=T, prob=c(0.7,0.3))
+credittraining = credit[sample==1,]
+credittest = credit[sample==2,]
+```
+generate model
+```{r}
+forest = randomForest(class ~ .,data=credittraining, ntree=100,importance=T)
+forest
+plot(forest)
+```
+predict
+```{r}
+prediction = predict(forest,credittest)
+prediction
+confusionM = table(prediction,credittest$class)
+confusionM
+```
+performance check
+```{r}
+hitrate = (confusionM[1] + confusionM[4]) / sum(confusionM)
+hitrate
+```
+

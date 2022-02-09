@@ -1,0 +1,47 @@
+```{r}
+#install.packages("e1071")
+library(e1071)
+```
+German banks credit dataset
+```{r}
+credit = read.csv("Credit.csv")
+head(credit)
+dim(credit)
+```
+Transforming class into factor 
+```{r}
+credit$class = as.factor(credit$class)
+```
+separate training and test
+```{r}
+sample = sample(2,1000,replace=T, prob=c(0.7,0.3))
+sample
+credittraining = credit[sample==1,]
+credittest = credit[sample==2,]
+```
+set dimensions 
+```{r}
+dim(credittraining)
+dim(credittest)
+```
+creating model
+```{r}
+model <- naiveBayes(class ~., credittraining)
+model
+```
+prevision 
+```{r}
+prevision <- predict(model,credittest)
+prevision
+```
+confusion matrix 
+```{r}
+confusion = table(credittest$class,prevision)
+confusion
+Hitrate = (confusion[1] + confusion[4]) / sum(confusion)
+missrate = (confusion[2] + confusion[3]) / sum(confusion)
+Hitrate
+missrate
+```
+
+
